@@ -9,7 +9,8 @@ Set EMAIL_HOST_PASSWORD
 Set EMAIL_PORT
 Set EMAIL_HOST
 
-
+Enter Email Body for successful validation in SuccessEmailBody.txt
+Enter Email Body for Error in validation in ErrorEmailBody.txt
 
 To run server goto sfUploadValidator/
 and run 

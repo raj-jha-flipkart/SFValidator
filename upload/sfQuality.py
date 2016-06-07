@@ -123,13 +123,13 @@ def Check(EmployeeDataFilePath,emailID,fallOutReport):
 	if len(Errors) == 0 :
 		if fallOutReport == 1:
 			FallOutReportXlsx(FieldId,Employees,TotalEmployee,ProductionTemplateFileName,FileName)
-			Message = ""
+			Message = open("SuccessEmailBody.txt").read()
 			Subject = "Success Factor Upload FallOut Report"
 			send_mail(Subject,Message,FileName+".xlsx",emailID)
 			os.remove(FileName+".xlsx")
 	else:
 		XlsxErrorReport(Errors,FileName)
-		Message = "Error Message"
+		Message = open("ErrorEmailBody.txt").read()
 		Subject = "Success Factor Upload File Error"
 		send_mail(Subject,Message,FileName+".xlsx",emailID)
 		os.remove(FileName+".xlsx")
