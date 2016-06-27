@@ -1,0 +1,42 @@
+# main.py
+
+import os, sys
+os.environ['DJANGO_SETTINGS_MODULE'] = 'sfUploadValidator.settings'
+sys.path.append('sfUploadValidator/sfUploadValidator')
+
+# Google App Engine imports.
+from google.appengine.ext.webapp import util
+from google.appengine.ext import webapp
+from google.appengine.ext import vendor
+
+# Add any libraries installed in the "lib" folder.
+vendor.add('lib')
+# Force Django to reload its settings.
+from django.conf import settings
+settings._target = None
+
+import django.core.handlers.wsgi
+from django.core.wsgi import get_wsgi_application
+import wsgiref.handlers
+#import django.core.signals
+#import django.db
+#import django.dispatch.dispatcher
+#sys.path.append('sfUploadValidator/upload')
+from upload import views
+# Log errors.
+#django.dispatch.dispatcher.connect(
+#   log_exception, django.core.signals.got_request_exception)
+
+# Unregister the rollback event handler.
+#django.dispatch.dispatcher.disconnect(
+#django.db._rollback_on_exception,
+#django.core.signals.got_request_exception)
+import webapp2,webob
+def main():
+    url_map = [ ('/',views.index)] # etc.
+    app =  webapp2.WSGIApplication(url_map,debug=False)
+                                     
+   # wsgiref.handlers.CGIHandler().run(app)
+
+if __name__ == '__main__':
+    main()
